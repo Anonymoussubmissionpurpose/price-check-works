@@ -1,0 +1,96 @@
+{
+  "updated_at": "2026-06-14T23:56:28.790693+00:00",
+  "market": "used",
+  "year_min": 2025,
+  "source": "Cars.com (best-effort scrape)",
+  "cars": {
+    "porsche_cayenne": {
+      "name": "Porsche Cayenne",
+      "name_zh": "保时捷 卡宴",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "aston_martin_dbx": {
+      "name": "Aston Martin DBX",
+      "name_zh": "阿斯顿马丁 DBX",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "aston_martin_vantage": {
+      "name": "Aston Martin Vantage",
+      "name_zh": "阿斯顿马丁 Vantage",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "lamborghini_urus": {
+      "name": "Lamborghini Urus",
+      "name_zh": "兰博基尼 Urus",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "mercedes_gls_maybach": {
+      "name": "Mercedes-Benz GLS Maybach",
+      "name_zh": "奔驰 GLS 迈巴赫",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "mercedes_amg_gt": {
+      "name": "Mercedes-Benz AMG GT",
+      "name_zh": "奔驰 AMG GT",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "mercedes_sl": {
+      "name": "Mercedes-Benz SL-Class",
+      "name_zh": "奔驰 SL",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "mercedes_g": {
+      "name": "Mercedes-Benz G-Class",
+      "name_zh": "奔驰 G级",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "range_rover": {
+      "name": "Land Rover Range Rover",
+      "name_zh": "路虎 揽胜",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "bentley_bentayga": {
+      "name": "Bentley Bentayga",
+      "name_zh": "宾利 添越",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    },
+    "ferrari_roma": {
+      "name": "Ferrari Roma",
+      "name_zh": "法拉利 罗马",
+      "listings": [],
+      "prices": [],
+      "last_success": null,
+      "stale": false
+    }
+  }
+}
