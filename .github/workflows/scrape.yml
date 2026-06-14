@@ -1,0 +1,55 @@
+name: Scrape Used Car Prices
+
+on:
+  schedule:
+    # 北京时间 08:00（= UTC 00:00）早班
+    - cron: "0 0 * * *"
+    # 北京时间 20:00（= UTC 12:00）晚班
+    # 注意：若用 MarketCheck 免费档（每月 500 次），请把下面这行删掉，改成每天只跑一次
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MARKETCHECK_API_KEY: ${{ secrets.MARKETCHECK_API_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install fallback scraper deps
+        if: ${{ env.MARKETCHECK_API_KEY == '' }}
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Run scraper
+        run: python scraper.py
+
+      - name: Commit updated price data
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/prices.json
+          if git diff --staged --quiet; then
+            echo "No changes — skipping commit"
+          else
+            git commit -m "📊 Update used-car prices [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git push
+          fi
