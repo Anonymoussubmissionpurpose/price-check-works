@@ -69,6 +69,7 @@ def fetch_marketcheck(car: dict) -> list[dict]:
         "start":      "0",
     }
     url = MARKETCHECK_URL + "?" + urllib.parse.urlencode(params)
+    import time; time.sleep(3.5)
     req = urllib.request.Request(url, headers={"Accept": "application/json"})
 
     try:
