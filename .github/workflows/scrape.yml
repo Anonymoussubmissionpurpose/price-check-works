@@ -26,7 +26,7 @@ jobs:
           python-version: "3.11"
 
       - name: Run scraper
-        run: python scraper.py
+        run: python probe_maybach.py
 
       - name: Commit updated price data
         run: |
