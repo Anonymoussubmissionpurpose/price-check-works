@@ -43,22 +43,27 @@ MARKETCHECK_URL = "https://api.marketcheck.com/v2/search/car/active"
 # Top US metros to cover the whole country (free tier caps each search at ~100mi,
 # so we query several cities and merge). Edit this list freely.
 CITIES = [
-    ("New York, NY",    "10001"),
-    ("Los Angeles, CA", "90012"),
-    ("Miami, FL",       "33101"),
-    ("Chicago, IL",     "60601"),
-    ("Dallas, TX",      "75201"),
-    ("Houston, TX",     "77002"),
-    ("Atlanta, GA",     "30303"),
-    ("Phoenix, AZ",     "85004"),
-    ("Seattle, WA",     "98101"),
-    ("Las Vegas, NV",   "89101"),
+    ("New York, NY",     "10001"),
+    ("Los Angeles, CA",  "90012"),
+    ("Chicago, IL",      "60601"),
+    ("Houston, TX",      "77002"),
+    ("Phoenix, AZ",      "85004"),
+    ("Philadelphia, PA", "19103"),
+    ("San Antonio, TX",  "78205"),
+    ("San Diego, CA",    "92101"),
+    ("Dallas, TX",       "75201"),
+    ("San Jose, CA",     "95113"),
+    ("Atlanta, GA",      "30303"),
+    ("Miami, FL",        "33101"),
+    ("Seattle, WA",      "98101"),
+    ("Las Vegas, NV",    "89101"),
+    ("Denver, CO",       "80202"),
 ]
 RADIUS = "100"          # free-tier maximum, in miles
 ROWS_PER_CITY = "20"    # cheapest-N pulled from each city before merging
 
 # Delay between API calls to stay under the free tier's 5 req/sec limit (avoids 429)
-API_DELAY = 1.2
+API_DELAY = 2.5
 
 
 def _api_get(params: dict):
