@@ -39,8 +39,25 @@ YEARS = "2025,2026,2027"
 API_KEY = os.environ.get("MARKETCHECK_API_KEY", "").strip()
 MARKETCHECK_URL = "https://api.marketcheck.com/v2/search/car/active"
 
+# Top US metros to cover the whole country (free tier caps each search at ~100mi,
+# so we query several cities and merge). Edit this list freely.
+CITIES = [
+    ("New York, NY",    "10001"),
+    ("Los Angeles, CA", "90012"),
+    ("Miami, FL",       "33101"),
+    ("Chicago, IL",     "60601"),
+    ("Dallas, TX",      "75201"),
+    ("Houston, TX",     "77002"),
+    ("Atlanta, GA",     "30303"),
+    ("Phoenix, AZ",     "85004"),
+    ("Seattle, WA",     "98101"),
+    ("Las Vegas, NV",   "89101"),
+]
+RADIUS = "100"          # free-tier maximum, in miles
+ROWS_PER_CITY = "20"    # cheapest-N pulled from each city before merging
+
 # Delay between API calls to stay under the free tier's 5 req/sec limit (avoids 429)
-API_DELAY = 2.5
+API_DELAY = 1.2
 
 
 def _api_get(params: dict):
@@ -60,28 +77,40 @@ def _api_get(params: dict):
 
 
 def fetch_marketcheck(car: dict) -> list[dict]:
-    """Return up to 5 cheapest used listings (2025+) for one car via the API.
-    Tries the primary make, then any alt_makes, until one returns listings."""
-    makes_to_try = [car["make"]] + car.get("alt_makes", [])
-    for mk in makes_to_try:
-        data = _api_get({
-            "api_key":    API_KEY,
-            "car_type":   "used",
-            "make":       mk,
-            "model":      car["model"],
-            "year":       YEARS,
-            "country":    "US",
-            "sort_by":    "price",
-            "sort_order": "asc",
-            "rows":       "30",
-            "start":      "0",
-        })
-        out = _parse_listings(data)
-        if out:
-            if mk != car["make"]:
-                print(f"     (matched under make='{mk}')")
-            return out
-    return []
+    """Query the cheapest used 2025+ listings across all CITIES, merge them,
+    dedupe by VIN, and return the 5 lowest-priced nationwide.
+    For a car with alt_makes, the correct make is resolved on the first city
+    that returns data, then reused for the rest."""
+    makes = [car["make"]] + car.get("alt_makes", [])
+    chosen_make = None
+    pool: dict = {}          # vin/key -> cheapest listing seen
+
+    for cname, zipc in CITIES:
+        candidates = [chosen_make] if chosen_make else makes
+        for mk in candidates:
+            data = _api_get({
+                "api_key":    API_KEY,
+                "car_type":   "used",
+                "make":       mk,
+                "model":      car["model"],
+                "year":       YEARS,
+                "zip":        zipc,
+                "radius":     RADIUS,
+                "sort_by":    "price",
+                "sort_order": "asc",
+                "rows":       ROWS_PER_CITY,
+                "start":      "0",
+            })
+            parsed = _parse_listings(data)
+            if parsed:
+                chosen_make = mk
+                for l in parsed:
+                    key = l.get("vin") or f'{l["price"]}-{l.get("miles")}'
+                    if key not in pool or l["price"] < pool[key]["price"]:
+                        pool[key] = l
+                break        # got data for this city; next city
+
+    return sorted(pool.values(), key=lambda x: x["price"])[:5]
 
 
 def _parse_listings(data) -> list[dict]:
@@ -103,6 +132,7 @@ def _parse_listings(data) -> list[dict]:
         dealer = lst.get("dealer", {}) or {}
         out.append({
             "price": price,
+            "vin":   lst.get("vin"),
             "year":  build.get("year"),
             "trim":  build.get("trim") or build.get("version"),
             "miles": lst.get("miles"),
@@ -201,7 +231,7 @@ def main():
         "updated_at": utc_now.isoformat(),
         "market": "used",
         "year_min": 2025,
-        "source": "MarketCheck (53k+ US dealers)",
+        "source": f"MarketCheck · {len(CITIES)} US metros merged",
         "cars": results,
     }
     with open(data_path, "w", encoding="utf-8") as f:
