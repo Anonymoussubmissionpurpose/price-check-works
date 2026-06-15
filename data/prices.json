@@ -1,39 +1,247 @@
 {
-  "updated_at": "2026-06-15T00:04:56.547262+00:00",
+  "updated_at": "2026-06-15T00:08:21.414805+00:00",
   "market": "used",
   "year_min": 2025,
-  "source": "Cars.com (best-effort scrape)",
+  "source": "MarketCheck (53k+ US dealers)",
   "cars": {
     "porsche_cayenne": {
       "name": "Porsche Cayenne",
       "name_zh": "保时捷 卡宴",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 70500,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 7714,
+          "city": "Marietta",
+          "state": "GA",
+          "url": "https://www.driveadream.com/used/Porsche/2025-Porsche-Cayenne-be7794c5ac183310161e000faa5719a3.htm"
+        },
+        {
+          "price": 74500,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 6491,
+          "city": "Marietta",
+          "state": "GA",
+          "url": "https://www.driveadream.com/used/Porsche/2025-Porsche-Cayenne-be7786f1ac181734323613c632899043.htm"
+        },
+        {
+          "price": 76052,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 14736,
+          "city": "Houston",
+          "state": "TX",
+          "url": "https://www.easyhonda.com/auto/used-2025-porsche-cayenne-base-houston-tx/118856066/"
+        },
+        {
+          "price": 76665,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 17607,
+          "city": "Brooklyn",
+          "state": "NY",
+          "url": "https://www.audibrooklyn.com/en/inventory/vehicle/?isdealer=&market=usuc&vehicleId=WP1AA2AY7SDA04011"
+        },
+        {
+          "price": 78056,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 15321,
+          "city": "Delray Beach",
+          "state": "FL",
+          "url": "https://www.kiadelray.com/inventory/used-2025-porsche-cayenne-base-awd-4d-sport-utility-wp1aa2ay2sda01291/"
+        }
+      ],
+      "prices": [
+        70500,
+        74500,
+        76052,
+        76665,
+        78056
+      ],
+      "last_success": "2026-06-15T00:08:21.414805+00:00",
       "stale": false
     },
     "aston_martin_dbx": {
       "name": "Aston Martin DBX",
       "name_zh": "阿斯顿马丁 DBX",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 197950,
+          "year": 2025,
+          "trim": "707",
+          "miles": 5258,
+          "city": "North Miami Beach",
+          "state": "FL",
+          "url": "https://www.prestigeimports.com/vehicle-details/used-2025-aston-martin-dbx-707-awd-north-miami-beach-fl-id-64609507"
+        },
+        {
+          "price": 200073,
+          "year": 2025,
+          "trim": "707",
+          "miles": 6799,
+          "city": "Indianapolis",
+          "state": "IN",
+          "url": "https://www.fiatofindianapolis.com/used/Aston-Martin/2025-Aston-Martin-DBX-86db9cd5ac18036b6bbd4e8d62a615e0.htm"
+        },
+        {
+          "price": 202991,
+          "year": 2025,
+          "trim": "707",
+          "miles": 4648,
+          "city": "Naples",
+          "state": "FL",
+          "url": "https://www.porschenaples.com/used/Aston-Martin/2025-Aston-Martin-DBX-0caf7461ac181319b0e774b951573196.htm"
+        },
+        {
+          "price": 205951,
+          "year": 2025,
+          "trim": "707",
+          "miles": 10358,
+          "city": "West Palm Beach",
+          "state": "FL",
+          "url": "https://www.lamborghinipalmbeach.com/vehicle-details-used-2025-aston-martin-dbx-707-west-palm-beach-fl-id-64941103"
+        },
+        {
+          "price": 206124,
+          "year": 2025,
+          "trim": "707",
+          "miles": 504,
+          "city": "Plano",
+          "state": "TX",
+          "url": "http://www.miniofplano.com/inventory/used-2025-aston-martin-dbx-707-awd-sport-utility-sd7vujdw2stv12715/"
+        }
+      ],
+      "prices": [
+        197950,
+        200073,
+        202991,
+        205951,
+        206124
+      ],
+      "last_success": "2026-06-15T00:08:21.414805+00:00",
       "stale": false
     },
     "aston_martin_vantage": {
       "name": "Aston Martin Vantage",
       "name_zh": "阿斯顿马丁 Vantage",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 180791,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 1218,
+          "city": "Miami Lakes",
+          "state": "FL",
+          "url": "https://www.miamilakesautomall.com/inventory/used-2025-aston-martin-vantage-base-rwd-2d-coupe-scfsmgfw4sgn09506/"
+        },
+        {
+          "price": 181676,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 7515,
+          "city": "West Palm Beach",
+          "state": "FL",
+          "url": "https://www.jaguarpalmbeach.com/inventory/2025-aston-martin-vantage-coupe-rwd-2dr-car-scfsmgfw4sgn10039/"
+        },
+        {
+          "price": 183985,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 2080,
+          "city": "Jacksonville",
+          "state": "FL",
+          "url": "https://www.davinciautomotive.com/inventory/aston-martin/vantage/N10168/"
+        },
+        {
+          "price": 184900,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 9699,
+          "city": "Brentwood",
+          "state": "TN",
+          "url": "https://www.astonmartin-nashville.com/2025/Aston%20Martin/Vantage/SCFSMGFWXSGN10031/"
+        },
+        {
+          "price": 185625,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 6777,
+          "city": "Summit",
+          "state": "NJ",
+          "url": "https://www.astonmartinsummit.com/used/Aston-Martin/2025-Aston-Martin-Vantage-b6ba18c0ac18347b8bc59a21ae291d15.htm"
+        }
+      ],
+      "prices": [
+        180791,
+        181676,
+        183985,
+        184900,
+        185625
+      ],
+      "last_success": "2026-06-15T00:08:21.414805+00:00",
       "stale": false
     },
     "lamborghini_urus": {
       "name": "Lamborghini Urus",
       "name_zh": "兰博基尼 Urus",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 279783,
+          "year": 2025,
+          "trim": "SE",
+          "miles": 18654,
+          "city": "Friendswood",
+          "state": "TX",
+          "url": "https://www.bigstarcadillac.com/inventory/used-2025-lamborghini-urus-se-awd-sport-utility-zpbud6zl2sla38376/"
+        },
+        {
+          "price": 280281,
+          "year": 2025,
+          "trim": "SE",
+          "miles": 8486,
+          "city": "Las Vegas",
+          "state": "NV",
+          "url": "http://www.landroverlasvegas.com/inventory/used-2025-lamborghini-urus-se-awd-4d-sport-utility-zpbud6zl9sla37659/"
+        },
+        {
+          "price": 290950,
+          "year": 2025,
+          "trim": "SE",
+          "miles": 7306,
+          "city": "North Miami Beach",
+          "state": "FL",
+          "url": "https://www.prestigeimports.com/vehicle-details/used-2025-lamborghini-urus-se-awd-north-miami-beach-fl-id-64609454"
+        },
+        {
+          "price": 292237,
+          "year": 2025,
+          "trim": "SE",
+          "miles": null,
+          "city": "Fort Lauderdale",
+          "state": "FL",
+          "url": "https://autoimportsmiami.com/vehicle-details/2025-lamborghini-urus-se/"
+        },
+        {
+          "price": 292900,
+          "year": 2025,
+          "trim": "SE",
+          "miles": 2695,
+          "city": "Atlanta",
+          "state": "GA",
+          "url": "https://motorcarsofatlanta.com/for-sale/used-lamborghini-urus-se-atlanta-ga/2025-lamborghini-urus-se-zpbud6zl4sla39643"
+        }
+      ],
+      "prices": [
+        279783,
+        280281,
+        290950,
+        292237,
+        292900
+      ],
+      "last_success": "2026-06-15T00:08:21.414805+00:00",
       "stale": false
     },
     "mercedes_gls_maybach": {
@@ -87,9 +295,61 @@
     "ferrari_roma": {
       "name": "Ferrari Roma",
       "name_zh": "法拉利 罗马",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 284900,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 3369,
+          "city": "Farmingdale",
+          "state": "NY",
+          "url": "https://www.motorcarclassics.com/2025-ferrari-roma-spider-c-1731.htm"
+        },
+        {
+          "price": 289000,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 411,
+          "city": "Beverly Hills",
+          "state": "CA",
+          "url": "https://mattioliautogroup.com/pre-owned/ZFF09RPA3S0315291"
+        },
+        {
+          "price": 289995,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 3993,
+          "city": "Montgomery",
+          "state": "AL",
+          "url": "https://autoconnectionllc.com/vdp/23977682/Used-2025-Ferrari-Roma-Spider-Convertible-for-sale-in-Montgomery-AL-36117"
+        },
+        {
+          "price": 294900,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 202,
+          "city": "Lake Bluff",
+          "state": "IL",
+          "url": "https://www.ferrarilakeforest.com/inventory/certified-used-2025-ferrari-roma-spider-rwd-2d-convertible-zff09rpaxs0322822/"
+        },
+        {
+          "price": 294995,
+          "year": 2025,
+          "trim": "Base",
+          "miles": 79,
+          "city": "Fuquay-Varina",
+          "state": "NC",
+          "url": "https://www.karmafv.com/used-vehicle-2025-ferrari-roma-spider-c-3354/"
+        }
+      ],
+      "prices": [
+        284900,
+        289000,
+        289995,
+        294900,
+        294995
+      ],
+      "last_success": "2026-06-15T00:08:21.414805+00:00",
       "stale": false
     }
   }
