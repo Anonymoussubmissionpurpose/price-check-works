@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
+      MARKETCHECK_API_KEY1: ${{ secrets.MARKETCHECK_API_KEY1 }}
       MARKETCHECK_API_KEY: ${{ secrets.MARKETCHECK_API_KEY }}
     steps:
       - name: Checkout repository
