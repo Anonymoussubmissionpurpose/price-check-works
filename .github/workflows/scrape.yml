@@ -2,9 +2,10 @@ name: Scrape Used Car Prices
 
 on:
   schedule:
-    # 每周日 美东凌晨 4 点 = UTC 周日 08:00
-    # 10 城 × 11 车 ≈ 110 次/周 ≈ 473 次/月，正好在免费档 500 次/月以内
-    - cron: "0 8 * * 0"
+    # 每月 10 号和 25 号，美东凌晨 4 点 = UTC 08:00
+    # 2 次/月 × 12 车 × 10 城 = 240 次/月，在免费档 500 次/月以内
+    - cron: "0 8 10 * *"
+    - cron: "0 8 25 * *"
   workflow_dispatch:
 
 permissions:
