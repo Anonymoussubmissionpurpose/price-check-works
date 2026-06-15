@@ -218,6 +218,16 @@ const axisFmt=v=>v>=1e6?"$"+(v/1e6).toFixed(1)+"M":v>=1e3?"$"+Math.round(v/1e3)+
 
 let chart=null, lastData=null;
 
+/* sort cars by AVERAGE of their (up to 5) prices, cheapest first;
+   cars with no prices sink to the bottom (stable order) */
+function sortedOrder(cars){
+  const avg=id=>{
+    const ps=(cars[id]&&cars[id].prices)||[];
+    return ps.length ? ps.reduce((a,b)=>a+b,0)/ps.length : Infinity;
+  };
+  return [...ORDER].sort((a,b)=>avg(a)-avg(b));
+}
+
 /* price labels at bar ends — only drawn when there's room (wider screens) */
 const labelPlugin={
   id:"endLabels",
@@ -243,17 +253,18 @@ const labelPlugin={
 
 function build(cars){
   const mobile=window.innerWidth<560;
-  const labels=ORDER.map(id=>{const m=META[id];return mobile?[m.md]:[m.mk,m.md];});
+  const order=sortedOrder(cars);
+  const labels=order.map(id=>{const m=META[id];return mobile?[m.md]:[m.mk,m.md];});
   const datasets=RANKS.map((label,ri)=>({
     label, backgroundColor:COLORS[ri]+"D9", borderColor:COLORS[ri], borderWidth:1,
     borderRadius:4, borderSkipped:false, maxBarThickness:mobile?12:18,
-    data:ORDER.map(id=>{const d=cars[id];return (d&&d.prices&&d.prices.length>ri)?d.prices[ri]:null;}),
-    _listings:ORDER.map(id=>cars[id]&&cars[id].listings?cars[id].listings:[])
+    data:order.map(id=>{const d=cars[id];return (d&&d.prices&&d.prices.length>ri)?d.prices[ri]:null;}),
+    _listings:order.map(id=>cars[id]&&cars[id].listings?cars[id].listings:[])
   }));
 
   const perCar=mobile?62:80;
   const box=document.getElementById("chartBox");
-  box.style.height=(ORDER.length*perCar+70)+"px";
+  box.style.height=(order.length*perCar+70)+"px";
 
   if(chart){chart.destroy();chart=null;}
   chart=new Chart(document.getElementById("chart"),{
@@ -270,7 +281,7 @@ function build(cars){
           titleColor:"#f5f5f6",bodyColor:"#a6a6ad",
           titleFont:{size:13,weight:"700"},bodyFont:{size:12.5},
           callbacks:{
-            title:items=>{const m=META[ORDER[items[0].dataIndex]];return m.mk+" "+m.md;},
+            title:items=>{const m=META[order[items[0].dataIndex]];return m.mk+" "+m.md;},
             label:ctx=>{
               if(ctx.raw==null)return null;
               const lst=(ctx.dataset._listings[ctx.dataIndex]||[])[ctx.datasetIndex];
@@ -299,7 +310,7 @@ function build(cars){
 
 function buildTable(cars){
   const tb=document.getElementById("tbody");tb.innerHTML="";
-  for(const id of ORDER){
+  for(const id of sortedOrder(cars)){
     const d=cars[id]||{}, m=META[id], ps=d.prices||[], ls=d.listings||[];
     const tr=document.createElement("tr");
     const cheapest=ls[0];
