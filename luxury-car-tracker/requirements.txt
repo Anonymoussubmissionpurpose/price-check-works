@@ -1,3 +1,0 @@
-# Only needed for the best-effort scraping fallback (when no MARKETCHECK_API_KEY).
-# The recommended MarketCheck API path uses Python's built-in urllib — no deps.
-playwright==1.44.0
