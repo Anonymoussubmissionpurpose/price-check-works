@@ -2,8 +2,9 @@ name: Scrape Used Car Prices
 
 on:
   schedule:
-    # 美东凌晨 4 点 = UTC 08:00（按夏令时；冬季会变凌晨 3 点）
-    - cron: "0 8 * * *"
+    # 每周日 美东凌晨 4 点 = UTC 周日 08:00
+    # 10 城 × 11 车 ≈ 110 次/周 ≈ 473 次/月，正好在免费档 500 次/月以内
+    - cron: "0 8 * * 0"
   workflow_dispatch:
 
 permissions:
@@ -12,7 +13,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       MARKETCHECK_API_KEY: ${{ secrets.MARKETCHECK_API_KEY }}
     steps:
