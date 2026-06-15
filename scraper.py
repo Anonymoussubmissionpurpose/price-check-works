@@ -37,7 +37,12 @@ CARS = [
 ]
 
 YEARS = "2025,2026,2027"
-API_KEY = os.environ.get("MARKETCHECK_API_KEY", "").strip()
+# Two keys: MARKETCHECK_API_KEY1 is primary; MARKETCHECK_API_KEY is the fallback.
+# When the current key returns "Monthly API quota exhausted", we switch to the next
+# one and resume from the exact request that failed (no re-scraping).
+KEYS = [k for k in (os.environ.get("MARKETCHECK_API_KEY1", "").strip(),
+                    os.environ.get("MARKETCHECK_API_KEY", "").strip()) if k]
+_key_idx = 0   # index of the key currently in use
 MARKETCHECK_URL = "https://api.marketcheck.com/v2/search/car/active"
 
 # Top US metros to cover the whole country (free tier caps each search at ~100mi,
@@ -67,18 +72,36 @@ API_DELAY = 2.5
 
 
 def _api_get(params: dict):
-    """GET MarketCheck and return parsed JSON, or None on error."""
-    url = MARKETCHECK_URL + "?" + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})
-    time.sleep(API_DELAY)
-    try:
-        with urllib.request.urlopen(req, timeout=40) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", "ignore")[:200]
-        print(f"     ⚠ API HTTP {e.code}: {body}")
-    except Exception as e:
-        print(f"     ⚠ API error: {e}")
+    """GET MarketCheck and return parsed JSON, or None on error.
+    Injects the current API key. On a 'Monthly API quota exhausted' 429, switches
+    to the next key and retries the SAME request, so scraping resumes in place."""
+    global _key_idx
+    params = dict(params)                       # don't mutate caller's dict
+    while _key_idx < len(KEYS):
+        params["api_key"] = KEYS[_key_idx]
+        url = MARKETCHECK_URL + "?" + urllib.parse.urlencode(params)
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        time.sleep(API_DELAY)
+        try:
+            with urllib.request.urlopen(req, timeout=40) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "ignore")
+            low = body.lower()
+            # Monthly quota used up on this key → switch to next key, retry same request
+            if e.code == 429 and ("quota" in low or "exhausted" in low):
+                if _key_idx + 1 < len(KEYS):
+                    print(f"     🔁 API key #{_key_idx+1} 月度配额用尽，切换到 key #{_key_idx+2} 继续")
+                    _key_idx += 1
+                    continue
+                print("     ❌ 所有 API key 的月度配额都已用尽")
+                return None
+            # rate-limit 429 or any other error → report and give up on this request
+            print(f"     ⚠ API HTTP {e.code}: {body[:160]}")
+            return None
+        except Exception as e:
+            print(f"     ⚠ API error: {e}")
+            return None
     return None
 
 
@@ -95,7 +118,6 @@ def fetch_marketcheck(car: dict) -> list[dict]:
         candidates = [chosen_make] if chosen_make else makes
         for mk in candidates:
             params = {
-                "api_key":    API_KEY,
                 "car_type":   "used",
                 "make":       mk,
                 "model":      car["model"],
@@ -159,7 +181,6 @@ def suggest_models(car: dict):
     hint = car["hint"].lower()
     for mk in [car["make"]] + car.get("alt_makes", []):
         data = _api_get({
-            "api_key":  API_KEY,
             "car_type": "used",
             "make":     mk,
             "year":     YEARS,
@@ -210,7 +231,7 @@ def record_result(results, existing, car, listings, utc_now):
         results[cid] = {**existing[cid], "stale": True}
     else:
         print("     ❌  No 2025+ used listings found")
-        if API_KEY:
+        if KEYS:
             suggest_models(car)   # auto-diagnostic: print real model names
         results[cid] = {
             "name": car["name"], "name_zh": car["name_zh"],
@@ -224,11 +245,11 @@ def main():
     print("=" * 64)
     print("  🚗  Luxury USED-Car Price Tracker  (model year 2025+)")
     print(f"  ⏰  {utc_now.strftime('%Y-%m-%d  %H:%M:%S  UTC')}")
-    print(f"  🔌  Source: {'MarketCheck API' if API_KEY else 'no API key'}")
+    print(f"  🔌  Source: MarketCheck API  ({len(KEYS)} key(s) configured)")
     print("=" * 64)
 
-    if not API_KEY:
-        print("❌  No MARKETCHECK_API_KEY set. Add it as a GitHub secret.")
+    if not KEYS:
+        print("❌  No API key set. Add MARKETCHECK_API_KEY1 and/or MARKETCHECK_API_KEY as GitHub secrets.")
         sys.exit(1)
 
     data_path = "data/prices.json"
