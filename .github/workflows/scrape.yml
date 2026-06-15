@@ -3,7 +3,6 @@ name: Scrape Used Car Prices
 on:
   schedule:
     # 每月 10 号和 25 号，美东凌晨 4 点 = UTC 08:00
-    # 2 次/月 × 12 车 × 10 城 = 240 次/月，在免费档 500 次/月以内
     - cron: "0 8 10 * *"
     - cron: "0 8 25 * *"
   workflow_dispatch:
@@ -38,5 +37,10 @@ jobs:
             echo "No changes"
           else
             git commit -m "Update used-car prices"
-            git push
+            # 先 rebase 远端最新改动再推，冲突时重试几次（避免 fetch-first 被拒）
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push && break
+              echo "retry $i..."
+              sleep 3
+            done
           fi
