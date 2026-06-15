@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-06-15T00:24:08.743517+00:00",
+  "updated_at": "2026-06-15T00:30:30.844502+00:00",
   "market": "used",
   "year_min": 2025,
-  "source": "MarketCheck (53k+ US dealers)",
+  "source": "MarketCheck · 10 US metros merged",
   "cars": {
     "porsche_cayenne": {
       "name": "Porsche Cayenne",
@@ -10,6 +10,7 @@
       "listings": [
         {
           "price": 70500,
+          "vin": "WP1AA2AY8SDA00923",
           "year": 2025,
           "trim": "Base",
           "miles": 7714,
@@ -19,6 +20,7 @@
         },
         {
           "price": 74500,
+          "vin": "WP1AA2AY1SDA02593",
           "year": 2025,
           "trim": "Base",
           "miles": 6491,
@@ -28,6 +30,7 @@
         },
         {
           "price": 76052,
+          "vin": "WP1AA2AY7SDA03991",
           "year": 2025,
           "trim": "Base",
           "miles": 14736,
@@ -37,6 +40,7 @@
         },
         {
           "price": 76665,
+          "vin": "WP1AA2AY7SDA04011",
           "year": 2025,
           "trim": "Base",
           "miles": 17607,
@@ -46,6 +50,7 @@
         },
         {
           "price": 78056,
+          "vin": "WP1AA2AY2SDA01291",
           "year": 2025,
           "trim": "Base",
           "miles": 15321,
@@ -61,7 +66,7 @@
         76665,
         78056
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "aston_martin_dbx": {
@@ -70,6 +75,7 @@
       "listings": [
         {
           "price": 197950,
+          "vin": "SD7VUJDWXSTV13269",
           "year": 2025,
           "trim": "707",
           "miles": 5258,
@@ -78,25 +84,8 @@
           "url": "https://www.prestigeimports.com/vehicle-details/used-2025-aston-martin-dbx-707-awd-north-miami-beach-fl-id-64609507"
         },
         {
-          "price": 200073,
-          "year": 2025,
-          "trim": "707",
-          "miles": 6799,
-          "city": "Indianapolis",
-          "state": "IN",
-          "url": "https://www.fiatofindianapolis.com/used/Aston-Martin/2025-Aston-Martin-DBX-86db9cd5ac18036b6bbd4e8d62a615e0.htm"
-        },
-        {
-          "price": 202991,
-          "year": 2025,
-          "trim": "707",
-          "miles": 4648,
-          "city": "Naples",
-          "state": "FL",
-          "url": "https://www.porschenaples.com/used/Aston-Martin/2025-Aston-Martin-DBX-0caf7461ac181319b0e774b951573196.htm"
-        },
-        {
           "price": 205951,
+          "vin": "SD7VUJDW1STV12477",
           "year": 2025,
           "trim": "707",
           "miles": 10358,
@@ -106,22 +95,43 @@
         },
         {
           "price": 206124,
+          "vin": "SD7VUJDW2STV12715",
           "year": 2025,
           "trim": "707",
           "miles": 504,
           "city": "Plano",
           "state": "TX",
           "url": "http://www.miniofplano.com/inventory/used-2025-aston-martin-dbx-707-awd-sport-utility-sd7vujdw2stv12715/"
+        },
+        {
+          "price": 209412,
+          "vin": "SD7VUJDW6STV11504",
+          "year": 2025,
+          "trim": "707",
+          "miles": 11528,
+          "city": "Downers Grove",
+          "state": "IL",
+          "url": "https://www.astonmartinchicago.com/certified/Aston-Martin/2025-Aston-Martin-DBX707-2d87d3b9ac180ccb907a2ab02e671228.htm"
+        },
+        {
+          "price": 210201,
+          "vin": "SD7VUJDW6STV11521",
+          "year": 2025,
+          "trim": "707",
+          "miles": 11226,
+          "city": "Plainfield",
+          "state": "IL",
+          "url": "https://www.hawksubaru.com/used/Aston%20Martin/2025-Aston-Martin-DBX-for-sale-joliet-il-0d2f0171ac180f9eca6503cf62ae68be.htm"
         }
       ],
       "prices": [
         197950,
-        200073,
-        202991,
         205951,
-        206124
+        206124,
+        209412,
+        210201
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "aston_martin_vantage": {
@@ -130,6 +140,7 @@
       "listings": [
         {
           "price": 180791,
+          "vin": "SCFSMGFW4SGN09506",
           "year": 2025,
           "trim": "Base",
           "miles": 1218,
@@ -139,6 +150,7 @@
         },
         {
           "price": 181676,
+          "vin": "SCFSMGFW4SGN10039",
           "year": 2025,
           "trim": "Base",
           "miles": 7515,
@@ -147,41 +159,44 @@
           "url": "https://www.jaguarpalmbeach.com/inventory/2025-aston-martin-vantage-coupe-rwd-2dr-car-scfsmgfw4sgn10039/"
         },
         {
-          "price": 183985,
-          "year": 2025,
-          "trim": "Base",
-          "miles": 2080,
-          "city": "Jacksonville",
-          "state": "FL",
-          "url": "https://www.davinciautomotive.com/inventory/aston-martin/vantage/N10168/"
-        },
-        {
-          "price": 184900,
-          "year": 2025,
-          "trim": "Base",
-          "miles": 9699,
-          "city": "Brentwood",
-          "state": "TN",
-          "url": "https://www.astonmartin-nashville.com/2025/Aston%20Martin/Vantage/SCFSMGFWXSGN10031/"
-        },
-        {
           "price": 185625,
+          "vin": "SCFSMGFW3SGN09996",
           "year": 2025,
           "trim": "Base",
           "miles": 6777,
           "city": "Summit",
           "state": "NJ",
           "url": "https://www.astonmartinsummit.com/used/Aston-Martin/2025-Aston-Martin-Vantage-b6ba18c0ac18347b8bc59a21ae291d15.htm"
+        },
+        {
+          "price": 186699,
+          "vin": "SCFSMGFW7SGN10116",
+          "year": 2025,
+          "trim": "Base",
+          "miles": 4916,
+          "city": "Greenwich",
+          "state": "CT",
+          "url": "https://www.alfaromeoofgreenwich.com/used-vehicle-2025-aston-martin-vantage-c-8549/"
+        },
+        {
+          "price": 187589,
+          "vin": "SCFSMGFW8SGN09735",
+          "year": 2025,
+          "trim": "Base",
+          "miles": 3309,
+          "city": "Downers Grove",
+          "state": "IL",
+          "url": "https://www.astonmartinchicago.com/certified/Aston-Martin/2025-Aston-Martin-Vantage-b883542aac180acbe92e69db693781d2.htm"
         }
       ],
       "prices": [
         180791,
         181676,
-        183985,
-        184900,
-        185625
+        185625,
+        186699,
+        187589
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "lamborghini_urus": {
@@ -190,6 +205,7 @@
       "listings": [
         {
           "price": 279783,
+          "vin": "ZPBUD6ZL2SLA38376",
           "year": 2025,
           "trim": "SE",
           "miles": 18654,
@@ -199,6 +215,7 @@
         },
         {
           "price": 280281,
+          "vin": "ZPBUD6ZL9SLA37659",
           "year": 2025,
           "trim": "SE",
           "miles": 8486,
@@ -208,6 +225,7 @@
         },
         {
           "price": 290950,
+          "vin": "ZPBUD6ZL8SLA34171",
           "year": 2025,
           "trim": "SE",
           "miles": 7306,
@@ -217,6 +235,7 @@
         },
         {
           "price": 292237,
+          "vin": "ZPBUD6ZL9SLA35975",
           "year": 2025,
           "trim": "SE",
           "miles": null,
@@ -226,6 +245,7 @@
         },
         {
           "price": 292900,
+          "vin": "ZPBUD6ZL4SLA39643",
           "year": 2025,
           "trim": "SE",
           "miles": 2695,
@@ -241,7 +261,7 @@
         292237,
         292900
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "mercedes_gls_maybach": {
@@ -257,16 +277,8 @@
       "name_zh": "奔驰 AMG GT",
       "listings": [
         {
-          "price": 93629,
-          "year": 2025,
-          "trim": "43",
-          "miles": 7299,
-          "city": "Little Rock",
-          "state": "AR",
-          "url": "https://www.mercedesbenzoflittlerock.com/certified/Mercedes-Benz/2025-Mercedes-Benz-AMG%C3%83%C2%82%20%C2%AE-GT-43-5bcbd64aac181a931376e49acc55dadf.htm"
-        },
-        {
           "price": 94204,
+          "vin": "W1KRJ4CB0SF005634",
           "year": 2025,
           "trim": "43",
           "miles": 4219,
@@ -276,6 +288,7 @@
         },
         {
           "price": 95300,
+          "vin": "W1KRJ4CB5SF006679",
           "year": 2025,
           "trim": "43",
           "miles": 2597,
@@ -285,6 +298,7 @@
         },
         {
           "price": 97495,
+          "vin": "W1KRJ4CB0TF009250",
           "year": 2026,
           "trim": "43",
           "miles": 126,
@@ -293,23 +307,34 @@
           "url": "https://showroom.auction123.com/porsche_of_roslyn/inventory/4553/2026/W1KRJ4CB0TF009250.html?leadsource=Showroom%7Cporsche_of_roslyn"
         },
         {
-          "price": 99448,
+          "price": 99971,
+          "vin": "W1KRJ4CB8SF007177",
           "year": 2025,
           "trim": "43",
-          "miles": 1484,
-          "city": "Melbourne",
-          "state": "FL",
-          "url": "https://www.mbmelbourne.com/certified/Mercedes-Benz/2025-Mercedes-Benz-AMG-GT-bd668a57ac1848f9f6d78eec7435596a.htm"
+          "miles": 4227,
+          "city": "Atlanta",
+          "state": "GA",
+          "url": "http://www.mercedesofbuckhead.com/inventory/certified-used-2025-mercedes-benz-amg%C2%AE-gt-amg%C2%AE-gt-43-rwd-2dr-car-w1krj4cb8sf007177/"
+        },
+        {
+          "price": 100000,
+          "vin": "W1KRJ4CB9SF006524",
+          "year": 2025,
+          "trim": "43",
+          "miles": 11947,
+          "city": "Marietta",
+          "state": "GA",
+          "url": "http://www.grandmarietta.com/details-2025-mercedes~benz-amg_gt-amg_gt_43_coupe-used-w1krj4cb9sf006524.html"
         }
       ],
       "prices": [
-        93629,
         94204,
         95300,
         97495,
-        99448
+        99971,
+        100000
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "mercedes_sl": {
@@ -318,6 +343,7 @@
       "listings": [
         {
           "price": 87789,
+          "vin": "W1KVK5AB9SF022971",
           "year": 2025,
           "trim": "Mercedes-AMG",
           "miles": 15486,
@@ -327,6 +353,7 @@
         },
         {
           "price": 88221,
+          "vin": "W1KVK5AB0SF024446",
           "year": 2025,
           "trim": "Mercedes-AMG",
           "miles": 4919,
@@ -336,6 +363,7 @@
         },
         {
           "price": 89083,
+          "vin": "W1KVK5ABXSF023191",
           "year": 2025,
           "trim": "Mercedes-AMG",
           "miles": 8505,
@@ -344,48 +372,164 @@
           "url": "https://www.mercedesofcalabasas.com/certified/Mercedes-Benz/2025-Mercedes-Benz-AMG-SL-43-near-Los-Angeles-315d9250ac1809880458fcbab28e645f.htm"
         },
         {
-          "price": 89125,
-          "year": 2025,
-          "trim": "Mercedes-AMG",
-          "miles": 3044,
-          "city": "Austin",
-          "state": "TX",
-          "url": "https://www.mercedesbenzofaustin.com/inventory/certified-used-2025-mercedes-benz-sl-class-sl-43-amg%C2%AE-rwd-2d-convertible-w1kvk5abxsf022817/"
-        },
-        {
           "price": 90183,
+          "vin": "W1KVK5AB3SF025008",
           "year": 2025,
           "trim": "Mercedes-AMG",
           "miles": 8136,
           "city": "North Miami",
           "state": "FL",
           "url": "http://www.porsche-northmiami.com/inventory/used-2025-mercedes-benz-sl-class-sl-43-amg%C2%AE-rwd-2d-convertible-w1kvk5ab3sf025008/"
+        },
+        {
+          "price": 91995,
+          "vin": "W1KVK5AB8SF022945",
+          "year": 2025,
+          "trim": "Mercedes-AMG",
+          "miles": 942,
+          "city": "Philadelphia",
+          "state": "PA",
+          "url": "https://www.cottmanautomall.com/inventory/2025-mercedes-benz-amg-sl-43-W1KVK5AB8SF022945"
         }
       ],
       "prices": [
         87789,
         88221,
         89083,
-        89125,
-        90183
+        90183,
+        91995
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "mercedes_g": {
       "name": "Mercedes-Benz G-Class",
       "name_zh": "奔驰 G级",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 133997,
+          "vin": "W1NWM0AB8SX017176",
+          "year": 2025,
+          "trim": "G580",
+          "miles": 6101,
+          "city": "Decatur",
+          "state": "GA",
+          "url": "https://www.buddychevy.com/used/Mercedes-Benz/2025-Mercedes-Benz-G-Class-47d95703ac184dd26bf9b23652b2e4b5.htm"
+        },
+        {
+          "price": 137076,
+          "vin": "W1NWM0AB0SX009881",
+          "year": 2025,
+          "trim": "G580",
+          "miles": 25900,
+          "city": "Thousand Oaks",
+          "state": "CA",
+          "url": "https://www.mbzthousandoaks.com/used-Thousand+Oaks-2025-Mercedes+Benz-G+580e-SUV-W1NWM0AB0SX009881"
+        },
+        {
+          "price": 139980,
+          "vin": "W1NWH1AB0SX018090",
+          "year": 2025,
+          "trim": "G550",
+          "miles": 20781,
+          "city": "Costa Mesa",
+          "state": "CA",
+          "url": "https://www.carbeeco.com/inventory/mercedesbenz/gclass/CS018090/"
+        },
+        {
+          "price": 139999,
+          "vin": "W1NWH1AB7SX004493",
+          "year": 2025,
+          "trim": "G550",
+          "miles": 16168,
+          "city": "Oxnard",
+          "state": "CA",
+          "url": "https://www.mbofoxnard.com/inventory/certified-used-2025-mercedes-benz-g-class-g-550-4matic%C2%AE-4d-sport-utility-w1nwh1ab7sx004493/"
+        },
+        {
+          "price": 141699,
+          "vin": "W1NWM0AB0SX029189",
+          "year": 2025,
+          "trim": "G580",
+          "miles": 16818,
+          "city": "Marietta",
+          "state": "GA",
+          "url": "https://www.platinumcarsmarietta.com/used-vehicle-2025-mercedes-benz-g-class-g-580-c-2462/"
+        }
+      ],
+      "prices": [
+        133997,
+        137076,
+        139980,
+        139999,
+        141699
+      ],
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "range_rover": {
       "name": "Land Rover Range Rover",
       "name_zh": "路虎 揽胜",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 92888,
+          "vin": "SALKP9F41SA268998",
+          "year": 2025,
+          "trim": "SE",
+          "miles": 12042,
+          "city": "South Amboy",
+          "state": "NJ",
+          "url": "http://www.uniqueautomall.com/details-2025-land_rover-range_rover_plug~in_hybrid-se-used-salkp9f41sa268998.html"
+        },
+        {
+          "price": 92888,
+          "vin": "SALKP9F45SA263304",
+          "year": 2025,
+          "trim": "SE",
+          "miles": 12507,
+          "city": "South Amboy",
+          "state": "NJ",
+          "url": "http://www.uniqueautomall.com/details-2025-land_rover-range_rover_plug~in_hybrid-se-used-salkp9f45sa263304.html"
+        },
+        {
+          "price": 97995,
+          "vin": "SALKPBFU4SA273779",
+          "year": 2025,
+          "trim": "SE",
+          "miles": 18294,
+          "city": "Ewing Township",
+          "state": "NJ",
+          "url": "https://jsmitsubishi.com/inventory/Used-2025-Land%20Rover-Range%20Rover-SE%20LWB%207%20Seats-SALKPBFU4SA273779"
+        },
+        {
+          "price": 98170,
+          "vin": "SALKP9FUXSA286447",
+          "year": 2025,
+          "trim": "SE",
+          "miles": 8797,
+          "city": "New Hyde Park",
+          "state": "NY",
+          "url": "http://www.turnautomall.com/inventory/used-2025-land-rover-range-rover-se-awd-p400-se-swb-salkp9fuxsa286447/"
+        },
+        {
+          "price": 98277,
+          "vin": "SALKP9F4XSA258356",
+          "year": 2025,
+          "trim": "SE",
+          "miles": 25262,
+          "city": "Schaumburg",
+          "state": "IL",
+          "url": "https://www.landroverschaumburg.com/inventory/used-2025-land-rover-range-rover-plug-in-hybrid-se-awd-4d-sport-utility-salkp9f4xsa258356/"
+        }
+      ],
+      "prices": [
+        92888,
+        92888,
+        97995,
+        98170,
+        98277
+      ],
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "bentley_bentayga": {
@@ -394,6 +538,7 @@
       "listings": [
         {
           "price": 199985,
+          "vin": "SJAAT2ZV8SC031439",
           "year": 2025,
           "trim": null,
           "miles": 4028,
@@ -402,50 +547,54 @@
           "url": "https://www.bentleynewportbeach.com/certified/Bentley/2025-Bentley-Bentayga-f492e997ac1805c330b79c991f5056f9.htm"
         },
         {
-          "price": 219900,
+          "price": 231245,
+          "vin": "SJAAT2ZV8SC030968",
           "year": 2025,
           "trim": null,
-          "miles": 3765,
-          "city": "Omaha",
-          "state": "NE",
-          "url": "https://bentleydenvdev.wpenginepowered.com/car/bentayga-bentley-2025-v8-sc029876/"
+          "miles": 3754,
+          "city": "Alpharetta",
+          "state": "GA",
+          "url": "https://www.bentleyatlanta.com/used/Bentley/2025-Bentley-Bentayga-in-Atlanta-58fb25fcac1828b62a7f52c85e9cca5c.htm"
         },
         {
-          "price": 221487,
+          "price": 234199,
+          "vin": "SJAAT2ZV3SC032255",
           "year": 2025,
-          "trim": "Base",
-          "miles": 1810,
-          "city": "Sarasota",
-          "state": "FL",
-          "url": "https://www.bentleysarasota.com/used-Sarasota-2025-Bentley-Bentayga-V8-SJAAT2ZV8SC031425"
+          "trim": "Azure",
+          "miles": 1900,
+          "city": "Alpharetta",
+          "state": "GA",
+          "url": "https://www.bentleyatlanta.com/certified/Bentley/2025-Bentley-Bentayga-in-Atlanta-270a797eac183ba3afde46e9026e29f3.htm"
         },
         {
-          "price": 224900,
+          "price": 234900,
+          "vin": "SJAAT2ZV6SC028958",
           "year": 2025,
-          "trim": null,
-          "miles": 32,
-          "city": "Omaha",
-          "state": "NE",
-          "url": "https://bentleydenvdev.wpenginepowered.com/car/bentayga-bentley-2025-v8-sc032140/"
-        },
-        {
-          "price": 225218,
-          "year": 2025,
-          "trim": "S",
-          "miles": 10774,
-          "city": "Austin",
+          "trim": "Black Edition",
+          "miles": 16114,
+          "city": "Dallas",
           "state": "TX",
-          "url": "https://www.bentleyaustin.com/2025/Bentley/Bentayga/SJAAT2ZV8SC029853/"
+          "url": "https://tacticalfleet.com/inventory/Used-2025-Bentley-Bentayga-V8%20AWD-SJAAT2ZV6SC028958"
+        },
+        {
+          "price": 234999,
+          "vin": "SJAAT2ZV0SC032228",
+          "year": 2025,
+          "trim": "Black Edition",
+          "miles": 5275,
+          "city": "Rancho Santa Fe",
+          "state": "CA",
+          "url": "https://www.ranchcoastmotorsport.com/vehicle-details/used-2025-bentley-bentayga-s-black-edition--san-diego-ca-id-64932223"
         }
       ],
       "prices": [
         199985,
-        219900,
-        221487,
-        224900,
-        225218
+        231245,
+        234199,
+        234900,
+        234999
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     },
     "ferrari_roma": {
@@ -454,6 +603,7 @@
       "listings": [
         {
           "price": 284900,
+          "vin": "ZFF09RPA1S0317346",
           "year": 2025,
           "trim": "Base",
           "miles": 3369,
@@ -463,6 +613,7 @@
         },
         {
           "price": 289000,
+          "vin": "ZFF09RPA3S0315291",
           "year": 2025,
           "trim": "Base",
           "miles": 411,
@@ -471,16 +622,8 @@
           "url": "https://mattioliautogroup.com/pre-owned/ZFF09RPA3S0315291"
         },
         {
-          "price": 289995,
-          "year": 2025,
-          "trim": "Base",
-          "miles": 3993,
-          "city": "Montgomery",
-          "state": "AL",
-          "url": "https://autoconnectionllc.com/vdp/23977682/Used-2025-Ferrari-Roma-Spider-Convertible-for-sale-in-Montgomery-AL-36117"
-        },
-        {
           "price": 294900,
+          "vin": "ZFF09RPAXS0322822",
           "year": 2025,
           "trim": "Base",
           "miles": 202,
@@ -489,23 +632,34 @@
           "url": "https://www.ferrarilakeforest.com/inventory/certified-used-2025-ferrari-roma-spider-rwd-2d-convertible-zff09rpaxs0322822/"
         },
         {
-          "price": 294995,
+          "price": 299990,
+          "vin": "ZFF09RPA7S0318047",
           "year": 2025,
           "trim": "Base",
-          "miles": 79,
-          "city": "Fuquay-Varina",
-          "state": "NC",
-          "url": "https://www.karmafv.com/used-vehicle-2025-ferrari-roma-spider-c-3354/"
+          "miles": 49,
+          "city": "Miami",
+          "state": "FL",
+          "url": "https://www.sportcarslux.com/vehicles/ferrari-roma-2025-base-black"
+        },
+        {
+          "price": 306589,
+          "vin": "ZFF09RPA8S0317344",
+          "year": 2025,
+          "trim": "Base",
+          "miles": 896,
+          "city": "West Palm Beach",
+          "state": "FL",
+          "url": "https://www.ferrariofpalmbeach.com/inventory/certified-used-2025-ferrari-roma-base-rwd-2d-convertible-zff09rpa8s0317344/"
         }
       ],
       "prices": [
         284900,
         289000,
-        289995,
         294900,
-        294995
+        299990,
+        306589
       ],
-      "last_success": "2026-06-15T00:24:08.743517+00:00",
+      "last_success": "2026-06-15T00:30:30.844502+00:00",
       "stale": false
     }
   }
