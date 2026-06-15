@@ -60,7 +60,7 @@ CITIES = [
     ("Denver, CO",       "80202"),
 ]
 RADIUS = "100"          # free-tier maximum, in miles
-ROWS_PER_CITY = "20"    # cheapest-N pulled from each city before merging
+ROWS_PER_CITY = "50"    # API max per request (50); same 1 call, more candidates merged
 
 # Delay between API calls to stay under the free tier's 5 req/sec limit (avoids 429)
 API_DELAY = 2.5
@@ -119,7 +119,8 @@ def fetch_marketcheck(car: dict) -> list[dict]:
                         pool[key] = l
                 break        # got data for this city; next city
 
-    return sorted(pool.values(), key=lambda x: x["price"])[:5]
+    # Keep ALL unique listings, cheapest first (full distribution, not just 5)
+    return sorted(pool.values(), key=lambda x: x["price"])
 
 
 def _parse_listings(data) -> list[dict]:
@@ -149,8 +150,6 @@ def _parse_listings(data) -> list[dict]:
             "state": dealer.get("state"),
             "url":   lst.get("vdp_url"),
         })
-        if len(out) >= 5:
-            break
     return out
 
 
@@ -183,14 +182,27 @@ def suggest_models(car: dict):
         return
 
 
+def _stats(prices: list[int]) -> dict:
+    """Compute summary stats for a sorted-or-unsorted price list."""
+    if not prices:
+        return {"count": 0, "min": None, "median": None, "max": None}
+    s = sorted(prices)
+    n = len(s)
+    median = s[n // 2] if n % 2 else (s[n // 2 - 1] + s[n // 2]) // 2
+    return {"count": n, "min": s[0], "median": median, "max": s[-1]}
+
+
 def record_result(results, existing, car, listings, utc_now):
     cid = car["id"]
     if listings:
         prices = [l["price"] for l in listings]
-        print(f"     ✅  {[f'${p:,}' for p in prices]}")
+        st = _stats(prices)
+        print(f"     ✅  {st['count']} listings  |  ${st['min']:,} – ${st['max']:,}  (median ${st['median']:,})")
         results[cid] = {
             "name": car["name"], "name_zh": car["name_zh"],
-            "listings": listings, "prices": prices,
+            "listings": listings,          # ALL merged listings (price/year/miles/city/state)
+            "prices": prices,              # all prices, cheapest first
+            "stats": st,                   # count / min / median / max
             "last_success": utc_now.isoformat(), "stale": False,
         }
     elif cid in existing and existing[cid].get("prices"):
@@ -202,7 +214,7 @@ def record_result(results, existing, car, listings, utc_now):
             suggest_models(car)   # auto-diagnostic: print real model names
         results[cid] = {
             "name": car["name"], "name_zh": car["name_zh"],
-            "listings": [], "prices": [],
+            "listings": [], "prices": [], "stats": _stats([]),
             "last_success": None, "stale": False,
         }
 
@@ -264,7 +276,9 @@ def main():
         hist = {"runs": []}
     hist["runs"].append({
         "date": utc_now.isoformat(),
-        "prices": {cid: d.get("prices", []) for cid, d in results.items()},
+        # compact per-car summary for trend analysis (full detail lives in the snapshot file)
+        "stats": {cid: {**d.get("stats", {}), "low5": (d.get("prices") or [])[:5]}
+                  for cid, d in results.items()},
     })
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(hist, f, ensure_ascii=False, indent=2)
