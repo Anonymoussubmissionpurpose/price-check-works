@@ -26,7 +26,8 @@ CARS = [
     {"id": "aston_martin_dbx",     "name": "Aston Martin DBX",         "name_zh": "阿斯顿马丁 DBX",    "make": "Aston Martin",  "model": "DBX",              "hint": "DBX"},
     {"id": "aston_martin_vantage", "name": "Aston Martin Vantage",     "name_zh": "阿斯顿马丁 Vantage","make": "Aston Martin",  "model": "Vantage",          "hint": "Vantage"},
     {"id": "lamborghini_urus",     "name": "Lamborghini Urus",         "name_zh": "兰博基尼 Urus",     "make": "Lamborghini",   "model": "Urus",             "hint": "Urus"},
-    {"id": "mercedes_gls_maybach", "name": "Mercedes-Benz GLS Maybach","name_zh": "奔驰 GLS 迈巴赫",   "make": "Mercedes-Maybach", "model": "GLS 600",       "hint": "GLS", "alt_makes": ["Maybach", "Mercedes-Benz"]},
+    {"id": "mercedes_gls_maybach", "name": "Mercedes-Benz GLS Maybach","name_zh": "奔驰 GLS 迈巴赫",   "make": "Mercedes-Benz", "model": "GLS", "trim": "Maybach", "hint": "GLS"},
+    {"id": "mercedes_amg_gls63",   "name": "Mercedes-Benz AMG GLS 63", "name_zh": "奔驰 AMG GLS 63",  "make": "Mercedes-Benz", "model": "GLS", "trim": "AMG GLS 63", "hint": "GLS"},
     {"id": "mercedes_amg_gt",      "name": "Mercedes-Benz AMG GT",     "name_zh": "奔驰 AMG GT",      "make": "Mercedes-Benz", "model": "AMG GT Coupe",     "hint": "GT"},
     {"id": "mercedes_sl",          "name": "Mercedes-Benz SL-Class",   "name_zh": "奔驰 SL",          "make": "Mercedes-Benz", "model": "SL",               "hint": "SL"},
     {"id": "mercedes_g",           "name": "Mercedes-Benz G-Class",    "name_zh": "奔驰 G级",         "make": "Mercedes-Benz", "model": "G-Class",          "hint": "G"},
@@ -88,7 +89,7 @@ def fetch_marketcheck(car: dict) -> list[dict]:
     for cname, zipc in CITIES:
         candidates = [chosen_make] if chosen_make else makes
         for mk in candidates:
-            data = _api_get({
+            params = {
                 "api_key":    API_KEY,
                 "car_type":   "used",
                 "make":       mk,
@@ -100,7 +101,10 @@ def fetch_marketcheck(car: dict) -> list[dict]:
                 "sort_order": "asc",
                 "rows":       ROWS_PER_CITY,
                 "start":      "0",
-            })
+            }
+            if car.get("trim"):           # e.g. Maybach is a trim of model "GLS"
+                params["trim"] = car["trim"]
+            data = _api_get(params)
             parsed = _parse_listings(data)
             if parsed:
                 chosen_make = mk
