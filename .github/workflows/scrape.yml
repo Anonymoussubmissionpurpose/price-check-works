@@ -12,6 +12,8 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      MARKETCHECK_API_KEY: ${{ secrets.MARKETCHECK_API_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
