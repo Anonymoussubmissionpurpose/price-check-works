@@ -236,6 +236,7 @@ def main():
 
     # ── Persist ────────────────────────────────────────────────────────────────
     os.makedirs("data", exist_ok=True)
+    os.makedirs("data/history", exist_ok=True)
     payload = {
         "updated_at": utc_now.isoformat(),
         "market": "used",
@@ -243,8 +244,32 @@ def main():
         "source": f"MarketCheck · {len(CITIES)} US metros merged",
         "cars": results,
     }
+    # 1) latest snapshot — what the website reads
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
+
+    # 2) full timestamped snapshot — one file per run, for historical analysis
+    stamp = utc_now.strftime("%Y-%m-%dT%H%M")
+    snap_path = f"data/history/{stamp}.json"
+    with open(snap_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+
+    # 3) compact long-term index — one tiny row per run (date + 5 prices per car).
+    #    Easy to load for trend charts without opening every snapshot.
+    index_path = "data/history/index.json"
+    try:
+        with open(index_path, encoding="utf-8") as f:
+            hist = json.load(f)
+    except Exception:
+        hist = {"runs": []}
+    hist["runs"].append({
+        "date": utc_now.isoformat(),
+        "prices": {cid: d.get("prices", []) for cid, d in results.items()},
+    })
+    with open(index_path, "w", encoding="utf-8") as f:
+        json.dump(hist, f, ensure_ascii=False, indent=2)
+    print(f"  🗂  Snapshot → {snap_path}  |  history index has {len(hist['runs'])} run(s)")
+
 
     # ── Summary ────────────────────────────────────────────────────────────────
     ok    = sum(1 for c in results.values() if c.get("prices") and not c.get("stale"))
