@@ -2,7 +2,8 @@ name: Scrape Used Car Prices
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    # 美东凌晨 4 点 = UTC 08:00（按夏令时；冬季会变凌晨 3 点）
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 permissions:
