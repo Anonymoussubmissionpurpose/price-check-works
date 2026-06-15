@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-15T00:21:13.250407+00:00",
+  "updated_at": "2026-06-15T00:24:08.743517+00:00",
   "market": "used",
   "year_min": 2025,
   "source": "MarketCheck (53k+ US dealers)",
@@ -61,7 +61,7 @@
         76665,
         78056
       ],
-      "last_success": "2026-06-15T00:21:13.250407+00:00",
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     },
     "aston_martin_dbx": {
@@ -121,7 +121,7 @@
         205951,
         206124
       ],
-      "last_success": "2026-06-15T00:21:13.250407+00:00",
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     },
     "aston_martin_vantage": {
@@ -181,7 +181,7 @@
         184900,
         185625
       ],
-      "last_success": "2026-06-15T00:21:13.250407+00:00",
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     },
     "lamborghini_urus": {
@@ -241,7 +241,7 @@
         292237,
         292900
       ],
-      "last_success": "2026-06-15T00:21:13.250407+00:00",
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     },
     "mercedes_gls_maybach": {
@@ -255,17 +255,121 @@
     "mercedes_amg_gt": {
       "name": "Mercedes-Benz AMG GT",
       "name_zh": "奔驰 AMG GT",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 93629,
+          "year": 2025,
+          "trim": "43",
+          "miles": 7299,
+          "city": "Little Rock",
+          "state": "AR",
+          "url": "https://www.mercedesbenzoflittlerock.com/certified/Mercedes-Benz/2025-Mercedes-Benz-AMG%C3%83%C2%82%20%C2%AE-GT-43-5bcbd64aac181a931376e49acc55dadf.htm"
+        },
+        {
+          "price": 94204,
+          "year": 2025,
+          "trim": "43",
+          "miles": 4219,
+          "city": "Roswell",
+          "state": "GA",
+          "url": "https://www.almcars.com/inventory/2025-mercedes-benz-amg-gt-43-W1KRJ4CB0SF005634"
+        },
+        {
+          "price": 95300,
+          "year": 2025,
+          "trim": "43",
+          "miles": 2597,
+          "city": "Los Angeles",
+          "state": "CA",
+          "url": "https://www.mbzla.com/inventory/certified-used-2025-mercedes-benz-amg%C2%AE-gt-amg%C2%AE-gt-43-rwd-2dr-car-w1krj4cb5sf006679/"
+        },
+        {
+          "price": 97495,
+          "year": 2026,
+          "trim": "43",
+          "miles": 126,
+          "city": "Jericho",
+          "state": "NY",
+          "url": "https://showroom.auction123.com/porsche_of_roslyn/inventory/4553/2026/W1KRJ4CB0TF009250.html?leadsource=Showroom%7Cporsche_of_roslyn"
+        },
+        {
+          "price": 99448,
+          "year": 2025,
+          "trim": "43",
+          "miles": 1484,
+          "city": "Melbourne",
+          "state": "FL",
+          "url": "https://www.mbmelbourne.com/certified/Mercedes-Benz/2025-Mercedes-Benz-AMG-GT-bd668a57ac1848f9f6d78eec7435596a.htm"
+        }
+      ],
+      "prices": [
+        93629,
+        94204,
+        95300,
+        97495,
+        99448
+      ],
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     },
     "mercedes_sl": {
       "name": "Mercedes-Benz SL-Class",
       "name_zh": "奔驰 SL",
-      "listings": [],
-      "prices": [],
-      "last_success": null,
+      "listings": [
+        {
+          "price": 87789,
+          "year": 2025,
+          "trim": "Mercedes-AMG",
+          "miles": 15486,
+          "city": "West Covina",
+          "state": "CA",
+          "url": "https://www.envisionmotors.com/used/Mercedes-Benz/2025-Mercedes-Benz-SL-Class-f8bd5410ac1828a514748839c1ed9501.htm"
+        },
+        {
+          "price": 88221,
+          "year": 2025,
+          "trim": "Mercedes-AMG",
+          "miles": 4919,
+          "city": "Farmers Branch",
+          "state": "TX",
+          "url": "https://www.certifiedautoplex.com/vehicle-details/used-2025-mercedes-benz-sl-class-sl-43-amgandreg-dallas-tx-id-64823827"
+        },
+        {
+          "price": 89083,
+          "year": 2025,
+          "trim": "Mercedes-AMG",
+          "miles": 8505,
+          "city": "Calabasas",
+          "state": "CA",
+          "url": "https://www.mercedesofcalabasas.com/certified/Mercedes-Benz/2025-Mercedes-Benz-AMG-SL-43-near-Los-Angeles-315d9250ac1809880458fcbab28e645f.htm"
+        },
+        {
+          "price": 89125,
+          "year": 2025,
+          "trim": "Mercedes-AMG",
+          "miles": 3044,
+          "city": "Austin",
+          "state": "TX",
+          "url": "https://www.mercedesbenzofaustin.com/inventory/certified-used-2025-mercedes-benz-sl-class-sl-43-amg%C2%AE-rwd-2d-convertible-w1kvk5abxsf022817/"
+        },
+        {
+          "price": 90183,
+          "year": 2025,
+          "trim": "Mercedes-AMG",
+          "miles": 8136,
+          "city": "North Miami",
+          "state": "FL",
+          "url": "http://www.porsche-northmiami.com/inventory/used-2025-mercedes-benz-sl-class-sl-43-amg%C2%AE-rwd-2d-convertible-w1kvk5ab3sf025008/"
+        }
+      ],
+      "prices": [
+        87789,
+        88221,
+        89083,
+        89125,
+        90183
+      ],
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     },
     "mercedes_g": {
@@ -341,7 +445,7 @@
         224900,
         225218
       ],
-      "last_success": "2026-06-15T00:21:13.250407+00:00",
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     },
     "ferrari_roma": {
@@ -401,7 +505,7 @@
         294900,
         294995
       ],
-      "last_success": "2026-06-15T00:21:13.250407+00:00",
+      "last_success": "2026-06-15T00:24:08.743517+00:00",
       "stale": false
     }
   }
