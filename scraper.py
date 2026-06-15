@@ -26,9 +26,9 @@ CARS = [
     {"id": "aston_martin_dbx",     "name": "Aston Martin DBX",         "name_zh": "阿斯顿马丁 DBX",    "make": "Aston Martin",  "model": "DBX",              "hint": "DBX"},
     {"id": "aston_martin_vantage", "name": "Aston Martin Vantage",     "name_zh": "阿斯顿马丁 Vantage","make": "Aston Martin",  "model": "Vantage",          "hint": "Vantage"},
     {"id": "lamborghini_urus",     "name": "Lamborghini Urus",         "name_zh": "兰博基尼 Urus",     "make": "Lamborghini",   "model": "Urus",             "hint": "Urus"},
-    {"id": "mercedes_gls_maybach", "name": "Mercedes-Benz GLS Maybach","name_zh": "奔驰 GLS 迈巴赫",   "make": "Mercedes-Benz", "model": "Maybach GLS 600",  "hint": "Maybach"},
-    {"id": "mercedes_amg_gt",      "name": "Mercedes-Benz AMG GT",     "name_zh": "奔驰 AMG GT",      "make": "Mercedes-Benz", "model": "AMG GT",           "hint": "GT"},
-    {"id": "mercedes_sl",          "name": "Mercedes-Benz SL-Class",   "name_zh": "奔驰 SL",          "make": "Mercedes-Benz", "model": "SL-Class",         "hint": "SL"},
+    {"id": "mercedes_gls_maybach", "name": "Mercedes-Benz GLS Maybach","name_zh": "奔驰 GLS 迈巴赫",   "make": "Mercedes-Maybach", "model": "GLS 600",       "hint": "GLS", "alt_makes": ["Maybach", "Mercedes-Benz"]},
+    {"id": "mercedes_amg_gt",      "name": "Mercedes-Benz AMG GT",     "name_zh": "奔驰 AMG GT",      "make": "Mercedes-Benz", "model": "AMG GT Coupe",     "hint": "GT"},
+    {"id": "mercedes_sl",          "name": "Mercedes-Benz SL-Class",   "name_zh": "奔驰 SL",          "make": "Mercedes-Benz", "model": "SL",               "hint": "SL"},
     {"id": "mercedes_g",           "name": "Mercedes-Benz G-Class",    "name_zh": "奔驰 G级",         "make": "Mercedes-Benz", "model": "G-Class",          "hint": "G"},
     {"id": "range_rover",          "name": "Land Rover Range Rover",   "name_zh": "路虎 揽胜",        "make": "Land Rover",    "model": "Range Rover",      "hint": "Range"},
     {"id": "bentley_bentayga",     "name": "Bentley Bentayga",         "name_zh": "宾利 添越",        "make": "Bentley",       "model": "Bentayga",         "hint": "Bentayga"},
@@ -40,7 +40,7 @@ API_KEY = os.environ.get("MARKETCHECK_API_KEY", "").strip()
 MARKETCHECK_URL = "https://api.marketcheck.com/v2/search/car/active"
 
 # Delay between API calls to stay under the free tier's 5 req/sec limit (avoids 429)
-API_DELAY = 1.5
+API_DELAY = 2.5
 
 
 def _api_get(params: dict):
@@ -60,22 +60,33 @@ def _api_get(params: dict):
 
 
 def fetch_marketcheck(car: dict) -> list[dict]:
-    """Return up to 5 cheapest used listings (2025+) for one car via the API."""
-    data = _api_get({
-        "api_key":    API_KEY,
-        "car_type":   "used",
-        "make":       car["make"],
-        "model":      car["model"],
-        "year":       YEARS,
-        "country":    "US",
-        "sort_by":    "price",
-        "sort_order": "asc",
-        "rows":       "30",
-        "start":      "0",
-    })
+    """Return up to 5 cheapest used listings (2025+) for one car via the API.
+    Tries the primary make, then any alt_makes, until one returns listings."""
+    makes_to_try = [car["make"]] + car.get("alt_makes", [])
+    for mk in makes_to_try:
+        data = _api_get({
+            "api_key":    API_KEY,
+            "car_type":   "used",
+            "make":       mk,
+            "model":      car["model"],
+            "year":       YEARS,
+            "country":    "US",
+            "sort_by":    "price",
+            "sort_order": "asc",
+            "rows":       "30",
+            "start":      "0",
+        })
+        out = _parse_listings(data)
+        if out:
+            if mk != car["make"]:
+                print(f"     (matched under make='{mk}')")
+            return out
+    return []
+
+
+def _parse_listings(data) -> list[dict]:
     if not data:
         return []
-
     out, seen = [], set()
     for lst in data.get("listings", []) or []:
         try:
@@ -107,28 +118,30 @@ def fetch_marketcheck(car: dict) -> list[dict]:
 def suggest_models(car: dict):
     """When a car returns nothing, list MarketCheck's real model names for that
     make (used, 2025+) that contain the hint keyword — so we can fix the config."""
-    data = _api_get({
-        "api_key":  API_KEY,
-        "car_type": "used",
-        "make":     car["make"],
-        "year":     YEARS,
-        "country":  "US",
-        "rows":     "0",
-        "facets":   "model|0|300|1",
-    })
-    if not data:
-        return
-    facets = (data.get("facets", {}) or {}).get("model", []) or []
     hint = car["hint"].lower()
-    matches = [f for f in facets if hint in str(f.get("item", "")).lower()]
-    if matches:
-        names = ", ".join(f'"{f["item"]}" ({f.get("count","?")})' for f in matches[:12])
-        print(f"        ↳ MarketCheck 中含 '{car['hint']}' 的车型名: {names}")
-    elif facets:
-        sample = ", ".join(f'"{f["item"]}"' for f in facets[:15])
-        print(f"        ↳ 未找到含 '{car['hint']}' 的车型；该品牌部分车型: {sample}")
-    else:
-        print(f"        ↳ 该品牌在 2025+ 二手暂无任何车型返回")
+    for mk in [car["make"]] + car.get("alt_makes", []):
+        data = _api_get({
+            "api_key":  API_KEY,
+            "car_type": "used",
+            "make":     mk,
+            "year":     YEARS,
+            "country":  "US",
+            "rows":     "0",
+            "facets":   "model|0|300|1",
+        })
+        if not data:
+            continue
+        facets = (data.get("facets", {}) or {}).get("model", []) or []
+        if not facets:
+            continue
+        matches = [f for f in facets if hint in str(f.get("item", "")).lower()]
+        if matches:
+            names = ", ".join(f'"{f["item"]}" ({f.get("count","?")})' for f in matches[:12])
+            print(f"        ↳ make='{mk}' 中含 '{car['hint']}' 的车型名: {names}")
+            return
+        sample = ", ".join(f'"{f["item"]}"' for f in facets[:12])
+        print(f"        ↳ make='{mk}' 部分车型: {sample}")
+        return
 
 
 def record_result(results, existing, car, listings, utc_now):
