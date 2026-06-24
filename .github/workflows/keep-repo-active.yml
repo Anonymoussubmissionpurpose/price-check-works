@@ -1,0 +1,59 @@
+name: Keep Repo Active
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"        # 每周一 03:00 UTC(cron 一律按 UTC)
+  workflow_dispatch:            # 可手动 Run workflow 测试
+
+permissions:
+  contents: write              # 推送保活提交
+  actions:  write              # 重新启用被停用的工作流
+
+concurrency:
+  group: keep-repo-active
+  cancel-in-progress: false
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 救活:把"因不活动被停用"的工作流重新启用(手动关掉的不动)
+      - name: Re-enable inactivity-disabled workflows
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${GITHUB_REPOSITORY}/actions/workflows" --paginate \
+            --jq '.workflows[] | select(.state=="disabled_inactivity") | .id' \
+          | while read -r id; do
+              echo "重新启用工作流 id=$id"
+              gh api --method PUT "repos/${GITHUB_REPOSITORY}/actions/workflows/${id}/enable" >/dev/null || true
+            done
+          echo "启用检查完成。"
+
+      # 防停:仓库安静超过 20 天才补一个空提交,重置 60 天计时器
+      - name: Commit only if the repo has been quiet
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          THRESHOLD_DAYS=20
+
+          last=$(git log -1 --format=%ct)
+          now=$(date +%s)
+          age=$(( (now - last) / 86400 ))
+          echo "最近一次提交距今 ${age} 天(阈值 ${THRESHOLD_DAYS} 天)。"
+
+          if [ "$age" -lt "$THRESHOLD_DAYS" ]; then
+            echo "仓库还活跃,无需保活提交。"
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: keepalive $(date -u +%F) [skip ci]"
+          git push origin "HEAD:${BRANCH}"
+          echo "✅ 已推送保活提交。"
